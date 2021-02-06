@@ -12,6 +12,7 @@ import pl.pjatk.CarRental_v2.model.Rent;
 import pl.pjatk.CarRental_v2.repository.RentRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
@@ -44,6 +45,16 @@ public class RentServiceTest {
     }
 
     @Test
+    void findById() {
+        //Given
+        when(rentRepository.findById(1L)).thenReturn(Optional.of(new Rent()));
+        //When
+        Optional<Rent> rent = rentService.findById(1L);
+        //Then
+        assertThat(rent).isNotNull();
+    }
+
+    @Test
     void shouldHave200AfterRent() {
         //given
         Car car = new Car("Ford", "Panda", "red", 2000, 200);
@@ -62,9 +73,19 @@ public class RentServiceTest {
         Customer customer = new Customer("Daniel", 600);
         //when
         Rent rent = rentService.rentCar(customer, car, 2);
-        List<Rent> all = rentService.findAll();
         //then
         assertThat(car.isAvailable()).isEqualTo(false);
+    }
+
+
+    @Test
+    void shouldReturn100() {
+        //given
+        Car car = new Car("Ford", "Panda", "red", 2000, 50, true);
+        //when
+        int payment = rentService.toPay(car, 2);
+        //then
+        assertThat(payment).isEqualTo(100);
     }
 
 

@@ -126,4 +126,8 @@ public class RentService {
         return toPay;
     }
 
+    public void deleteAll() {
+        rentRepository.deleteAll();
+    }
+
 }
