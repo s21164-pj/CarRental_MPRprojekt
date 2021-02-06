@@ -9,11 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import pl.pjatk.CarRental_v2.model.Customer;
 import pl.pjatk.CarRental_v2.repository.CustomerRepository;
 
-import java.util.List;
-import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceTest {
