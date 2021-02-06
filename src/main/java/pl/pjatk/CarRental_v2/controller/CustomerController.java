@@ -53,6 +53,7 @@ public class CustomerController {
 
     @PutMapping("/deposit")
     public ResponseEntity<Customer> depositMoney(@RequestParam Long id, @RequestParam int deposit) {
-        return ResponseEntity.ok(customerService.depositMoney(id, deposit));
+        Optional<Customer> customer= customerService.findByID(id);
+        return ResponseEntity.ok(customerService.depositMoney(customer.get(), deposit));
     }
 }

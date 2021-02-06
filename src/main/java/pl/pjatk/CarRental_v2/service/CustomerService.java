@@ -44,10 +44,15 @@ public class CustomerService {
         return false;
     }
 
-    public Customer depositMoney(Long customerID, int deposit) {
-        Customer customer = customerRepository.findById(customerID).get();
+    public Customer depositMoney(Customer customer, int deposit) {
         customer.setWallet(customer.getWallet() + deposit);
         return customerRepository.save(customer);
     }
+
+    /*public Customer depositMoney(Long customerID, int deposit) {
+        Customer customer = customerRepository.findById(customerID).get();
+        customer.setWallet(customer.getWallet() + deposit);
+        return customerRepository.save(customer);
+    }*/
 
 }
